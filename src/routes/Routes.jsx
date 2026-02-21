@@ -9,7 +9,6 @@ import ErrorPage from "../pages/ErrorPage";
 
 // ================= Public Pages =================
 import TuitionsListing from "../pages/TuitionsListing";
-// import TuitionDetails from "../pages/TuitionDetails";
 import TutorListing from "../pages/TutorListing";
 import TutorProfile from "../pages/TutorProfile";
 
@@ -36,15 +35,15 @@ import ReportsAnalytics from "../pages/AdminDashboard/ReportsAnalytics";
 // ================= Payment Pages =================
 import PaymentHistory from "../pages/PaymentHistory";
 import PaymentSuccess from "../pages/PaymentSuccess";
-// import PaymentCancel from "../pages/PaymentCancel";
+
 
 // ================= Other pages =================
 import AddRequest from "../pages/dashboard/mainDashboard/AddRequest/AddRequest";
 
 // ================= PrivateRoute =================
 import PrivateRoute from "./PrivateRoute";
-import PaymentCancel from "../pages/PaymentCancel ";
 import TuitionDetails from "../pages/TuitionDetails";
+import PaymentCancel from "../pages/PaymentCancel ";
 
 const router = createBrowserRouter([
   // ================= PUBLIC ROUTES =================
@@ -72,7 +71,7 @@ const router = createBrowserRouter([
       { path: "payment-cancel", element: <PaymentCancel /> },
       { path: "payment-history", element: <PaymentHistory /> },
 
-      // Error page for debugging
+      // Error page
       { path: "error", element: <ErrorPage /> },
     ],
   },
@@ -81,7 +80,9 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <PrivateRoute>
+      <PrivateRoute allowedRoles={["student", "admin"]}>
+        {" "}
+        // 👈 student এবং admin allowed
         <StudentDashboard />
       </PrivateRoute>
     ),
@@ -102,7 +103,9 @@ const router = createBrowserRouter([
   {
     path: "/tutor",
     element: (
-      <PrivateRoute>
+      <PrivateRoute allowedRoles={["tutor", "admin"]}>
+        {" "}
+        // 👈 tutor এবং admin allowed
         <TutorDashboard />
       </PrivateRoute>
     ),
@@ -121,7 +124,9 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <PrivateRoute>
+      <PrivateRoute allowedRoles={["admin"]}>
+        {" "}
+        // 👈 শুধু admin allowed
         <AdminDashboard />
       </PrivateRoute>
     ),
@@ -140,7 +145,9 @@ const router = createBrowserRouter([
   {
     path: "/tuition/:id/apply",
     element: (
-      <PrivateRoute>
+      <PrivateRoute allowedRoles={["tutor", "admin"]}>
+        {" "}
+        // 👈 শুধু tutor এবং admin apply করতে পারে
         <TuitionDetails />
       </PrivateRoute>
     ),

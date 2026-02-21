@@ -1,73 +1,59 @@
-// import axios from "axios";
-// import { useContext, useEffect } from "react";
-// import { AuthContext } from "../provider/AuthProvider";
-
-// const useAxiosSecure = () => {
-//   const { user } = useContext(AuthContext);
-
-//   const axiosSecure = axios.create({
-//     baseURL: "http://localhost:5000",
-//   });
-
-//   useEffect(() => {
-//     const reqInterceptor = axiosSecure.interceptors.request.use(
-//       (config) => {
-//         if (user?.accessToken) {
-//           config.headers.Authorization = `Bearer ${user.accessToken}`;
-//         }
-//         return config;
-//       },
-//       (error) => Promise.reject(error)
-//     );
-
-//     const resInterceptor = axiosSecure.interceptors.response.use(
-//       (res) => res,
-//       (err) => Promise.reject(err)
-//     );
-
-//     return () => {
-//       axiosSecure.interceptors.request.eject(reqInterceptor);
-//       axiosSecure.interceptors.response.eject(resInterceptor);
-//     };
-//   }, [user]);
-
-//   return axiosSecure;
-// };
-
-// export default useAxiosSecure;
-
+// src/hooks/useAxiosSecure.js
 import axios from "axios";
-import { useEffect } from "react";
-import { getAuth } from "firebase/auth";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const axiosSecure = axios.create({
   baseURL: "http://localhost:5000",
 });
 
 const useAxiosSecure = () => {
+  const { logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const reqInterceptor = axiosSecure.interceptors.request.use(
-      async (config) => {
-        const auth = getAuth();
-        const user = auth.currentUser;
-
-        if (user) {
-          const token = await user.getIdToken(); // ✅ Firebase ID Token
-          config.headers.authorization = `Bearer ${token}`;
+    // Request interceptor - token যোগ করা
+    const requestInterceptor = axiosSecure.interceptors.request.use(
+      (config) => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
         }
-
         return config;
       },
       (error) => Promise.reject(error),
     );
 
+    // Response interceptor - error handling
+    const responseInterceptor = axiosSecure.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        if (error.response?.status === 401) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          await logOut();
+          navigate("/login");
+          toast.error("Session expired. Please login again.");
+        }
+
+        if (error.response?.status === 403) {
+          toast.error("You don't have permission to do this");
+          navigate("/");
+        }
+
+        return Promise.reject(error);
+      },
+    );
+
     return () => {
-      axiosSecure.interceptors.request.eject(reqInterceptor);
+      axiosSecure.interceptors.request.eject(requestInterceptor);
+      axiosSecure.interceptors.response.eject(responseInterceptor);
     };
-  }, []);
+  }, [logOut, navigate]);
 
   return axiosSecure;
 };
 
 export default useAxiosSecure;
-
