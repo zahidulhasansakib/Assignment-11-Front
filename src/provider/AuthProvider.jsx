@@ -23,10 +23,19 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(null);
 
-  // --- Email Signup ---
-  const emailSignup = async (name, email, password, photoURL) => {
+
+  const emailSignup = async (
+    name,
+    email,
+    password,
+    photoURL,
+    role = "student",
+    phone = "",
+  ) => {
     setLoading(true);
     try {
+      console.log("📝 Signup attempt:", { name, email, role, phone });
+
       const result = await createUserWithEmailAndPassword(
         auth,
         email.trim(),
@@ -41,33 +50,42 @@ const AuthProvider = ({ children }) => {
       }
 
       const idToken = await result.user.getIdToken();
+
+      // ✅ সব fields পাঠান
       const response = await axios.post(
         "http://localhost:5000/register",
         {
           name: name || result.user.displayName,
           email: result.user.email,
+          password: password, // ← গুরুত্বপূর্ণ
           uid: result.user.uid,
-          role: "student",
+          role: role, // ← student/tutor
+          phone: phone, // ← phone number
+          photoURL: photoURL || "",
         },
         {
           headers: { Authorization: `Bearer ${idToken}` },
         },
       );
 
+      console.log("✅ Register response:", response.data);
+
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         setToken(response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
       }
 
       setUser({
         ...result.user,
-        role: response.data.user?.role || "student",
+        ...response.data.user,
+        role: response.data.user?.role || role,
         status: response.data.user?.status || "active",
       });
 
       return result.user;
     } catch (err) {
-      console.error("Signup error:", err);
+      console.error("❌ Signup error:", err);
       throw err;
     } finally {
       setLoading(false);
@@ -252,7 +270,7 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
-};
+};;
 
 // Default export only
 export default AuthProvider;
