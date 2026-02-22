@@ -47,6 +47,48 @@ const AppliedTutors = () => {
     fetchTuitions();
   }, [user]);
 
+  // AppliedTutors.jsx - এই function টি যোগ করুন (state variables এর পরে)
+
+  // Handle Payment and Approve
+  const handlePaymentAndApprove = async () => {
+    if (!selectedApplication) {
+      toast.error("No application selected");
+      return;
+    }
+
+    try {
+      setPaymentLoading(true);
+      console.log("💳 Processing payment for:", selectedApplication);
+
+      const paymentData = {
+        studentEmail: user?.email,
+        tuitionId: selectedApplication.tuitionId,
+        tutorEmail: selectedApplication.tutorEmail,
+        amount:
+          selectedApplication.proposedFee ||
+          selectedApplication.tuition?.budget,
+        applicationId: selectedApplication._id,
+      };
+
+      console.log("📤 Sending payment request:", paymentData);
+
+      const response = await axios.post("/create-tuition-payment", paymentData);
+      console.log("📥 Payment response:", response.data);
+
+      if (response.data.url) {
+        console.log("🔗 Redirecting to:", response.data.url);
+        window.location.href = response.data.url; // Stripe page এ redirect
+      } else {
+        toast.error("Failed to create payment session");
+      }
+    } catch (error) {
+      console.error("❌ Payment error:", error);
+      toast.error(error.response?.data?.message || "Payment failed");
+    } finally {
+      setPaymentLoading(false);
+    }
+  };
+
   const fetchApplications = async () => {
     try {
       setLoading(true);
@@ -536,7 +578,7 @@ const AppliedTutors = () => {
         )}
       </motion.div>
 
-      {/* Payment Modal */}
+      {/* Payment Modal - */}
       {showPaymentModal && selectedApplication && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <motion.div
@@ -587,18 +629,23 @@ const AppliedTutors = () => {
                     setShowPaymentModal(false);
                     setSelectedApplication(null);
                   }}
-                  className="flex-1 px-4 py-3 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors">
+                  disabled={paymentLoading}
+                  className="flex-1 px-4 py-3 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors disabled:opacity-50">
                   Cancel
                 </button>
 
                 <button
-                  onClick={() => {
-                    // Payment logic here
-                    toast.info("Payment integration coming soon!");
-                    setShowPaymentModal(false);
-                  }}
-                  className="flex-1 px-4 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all">
-                  Pay Now
+                  onClick={handlePaymentAndApprove}
+                  disabled={paymentLoading}
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-2">
+                  {paymentLoading ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Processing...
+                    </>
+                  ) : (
+                    "Pay Now"
+                  )}
                 </button>
               </div>
             </div>
@@ -607,6 +654,6 @@ const AppliedTutors = () => {
       )}
     </div>
   );
-};
+};;
 
 export default AppliedTutors;

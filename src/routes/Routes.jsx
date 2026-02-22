@@ -34,7 +34,7 @@ import ReportsAnalytics from "../pages/AdminDashboard/ReportsAnalytics";
 
 // ================= Payment Pages =================
 import PaymentHistory from "../pages/PaymentHistory";
-import PaymentSuccess from "../pages/PaymentSuccess";
+
 
 
 // ================= Other pages =================
@@ -44,6 +44,7 @@ import AddRequest from "../pages/dashboard/mainDashboard/AddRequest/AddRequest";
 import PrivateRoute from "./PrivateRoute";
 import TuitionDetails from "../pages/TuitionDetails";
 import PaymentCancel from "../pages/PaymentCancel ";
+import PaymentSuccess from "../pages/PaymentSuccess";
 
 const router = createBrowserRouter([
   // ================= PUBLIC ROUTES =================
