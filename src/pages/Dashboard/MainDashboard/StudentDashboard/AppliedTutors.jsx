@@ -47,6 +47,27 @@ const AppliedTutors = () => {
     fetchTuitions();
   }, [user]);
 
+  useEffect(() => {
+    // Check URL for payment status
+    const query = new URLSearchParams(window.location.search);
+    const paymentStatus = query.get("payment");
+
+    if (paymentStatus === "success") {
+      toast.success("✅ Payment successful! Tutor has been approved.");
+      // Refresh applications to show updated status
+      fetchApplications();
+    } else if (paymentStatus === "error") {
+      toast.error("❌ Payment failed. Please try again.");
+    }
+
+    // Clean up URL
+    if (paymentStatus) {
+      const url = new URL(window.location);
+      url.searchParams.delete("payment");
+      window.history.replaceState({}, "", url);
+    }
+  }, []);
+
   // AppliedTutors.jsx - এই function টি যোগ করুন (state variables এর পরে)
 
   // Handle Payment and Approve
