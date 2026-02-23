@@ -37,17 +37,17 @@ import PaymentHistory from "../pages/PaymentHistory";
 
 
 
-// ================= Other pages =================
+//  Other pages 
 import AddRequest from "../pages/dashboard/mainDashboard/AddRequest/AddRequest";
 
-// ================= PrivateRoute =================
+//  PrivateRoute 
 import PrivateRoute from "./PrivateRoute";
 import TuitionDetails from "../pages/TuitionDetails";
 import PaymentCancel from "../pages/PaymentCancel ";
 import PaymentSuccess from "../pages/PaymentSuccess";
 
 const router = createBrowserRouter([
-  // ================= PUBLIC ROUTES =================
+  //  PUBLIC ROUTES 
   {
     path: "/",
     element: <RootLayout />,
