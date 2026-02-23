@@ -20,19 +20,19 @@ import AppliedTutors from "../pages/dashboard/mainDashboard/StudentDashboard/App
 import Payments from "../pages/dashboard/mainDashboard/StudentDashboard/Payments";
 import ProfileSettings from "../pages/dashboard/mainDashboard/StudentDashboard/ProfileSettings";
 
-// ================= Tutor Dashboard pages =================
+// Tutor Dashboard pages 
 import TutorDashboard from "../pages/TutorDashboard/TutorDashboard";
 import MyApplications from "../pages/TutorDashboard/MyApplications";
 import TutorOngoingTuitions from "../pages/TutorDashboard/TutorOngoingTuitions";
 import RevenueHistory from "../pages/TutorDashboard/RevenueHistory";
 
-// ================= Admin Dashboard pages =================
+//  Admin Dashboard pages 
 import AdminDashboard from "../pages/AdminDashboard/AdminDashboard";
 import UserManagement from "../pages/AdminDashboard/UserManagement";
 import TuitionManagement from "../pages/AdminDashboard/TuitionManagement";
 import ReportsAnalytics from "../pages/AdminDashboard/ReportsAnalytics";
 
-// ================= Payment Pages =================
+//  Payment Pages 
 import PaymentHistory from "../pages/PaymentHistory";
 
 
