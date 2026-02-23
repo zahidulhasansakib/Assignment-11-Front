@@ -77,7 +77,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  // ================= STUDENT DASHBOARD =================
+  //  STUDENT DASHBOARD 
   {
     path: "/dashboard",
     element: (
@@ -100,7 +100,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  // ================= TUTOR DASHBOARD =================
+  //  TUTOR DASHBOARD 
   {
     path: "/tutor",
     element: (
@@ -121,7 +121,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  // ================= ADMIN DASHBOARD =================
+  //  ADMIN DASHBOARD 
   {
     path: "/admin",
     element: (
@@ -142,7 +142,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  // ================= PROTECTED ROUTES =================
+  //  PROTECTED ROUTES 
   {
     path: "/tuition/:id/apply",
     element: (
@@ -154,7 +154,7 @@ const router = createBrowserRouter([
     ),
   },
 
-  // ================= 404 ROUTE =================
+  //  404 ROUTE 
   {
     path: "*",
     element: <ErrorPage />,
