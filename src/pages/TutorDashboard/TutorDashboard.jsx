@@ -1,4 +1,4 @@
-// src/pages/dashboard/TutorDashboard/TutorDashboard.jsx
+
 import React, { useContext, useEffect } from "react";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
