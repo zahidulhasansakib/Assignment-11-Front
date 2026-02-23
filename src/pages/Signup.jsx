@@ -62,7 +62,7 @@ const Signup = () => {
     }
   }, [district, upazilas]);
 
-  // ================= Password Validation =================
+  //  Password Validation 
   const validatePassword = (pass) => {
     if (pass.length < 6) {
       setPasswordError("Password must be at least 6 characters long.");
@@ -72,7 +72,7 @@ const Signup = () => {
     return true;
   };
 
-  // ================= Handle Signup =================
+  //  Handle Signup 
   
 
   const handleSignup = async (e) => {

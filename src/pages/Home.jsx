@@ -1,4 +1,4 @@
-// src/pages/Home.jsx
+
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
