@@ -1,4 +1,4 @@
-// src/pages/dashboard/AdminDashboard/AdminDashboard.jsx
+
 import React, { useContext, useEffect, useState } from "react";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
