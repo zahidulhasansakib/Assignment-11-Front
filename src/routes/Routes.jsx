@@ -1,4 +1,4 @@
-// src/routes/Routes.jsx
+
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../RootLayout/RootLayout";
 import Home from "../pages/Home";
@@ -7,12 +7,12 @@ import Signup from "../pages/Signup";
 import Contact from "../pages/Contact";
 import ErrorPage from "../pages/ErrorPage";
 
-// ================= Public Pages =================
+//  Public Pages 
 import TuitionsListing from "../pages/TuitionsListing";
 import TutorListing from "../pages/TutorListing";
 import TutorProfile from "../pages/TutorProfile";
 
-// ================= Student Dashboard pages =================
+// Student Dashboard pages
 import StudentDashboard from "../pages/dashboard/mainDashboard/StudentDashboard/StudentDashboard";
 import MyTuitions from "../pages/dashboard/mainDashboard/StudentDashboard/MyTuitions";
 import PostTuition from "../pages/dashboard/mainDashboard/StudentDashboard/PostTuition";
