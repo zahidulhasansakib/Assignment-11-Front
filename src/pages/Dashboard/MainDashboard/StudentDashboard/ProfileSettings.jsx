@@ -738,7 +738,7 @@ const ProfileSettings = () => {
               variants={fadeInUp}
               initial="initial"
               animate="animate"
-              exit="exit"
+              exit="exit" 
               className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-6 border border-white/50">
               <form onSubmit={handleSubmit}>
                 <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
