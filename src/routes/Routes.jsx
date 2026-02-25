@@ -37,14 +37,14 @@ import PaymentHistory from "../pages/PaymentHistory";
 
 
 
-//  Other pages 
-import AddRequest from "../pages/dashboard/mainDashboard/AddRequest/AddRequest";
+
 
 //  PrivateRoute 
 import PrivateRoute from "./PrivateRoute";
 import TuitionDetails from "../pages/TuitionDetails";
 import PaymentCancel from "../pages/PaymentCancel ";
 import PaymentSuccess from "../pages/PaymentSuccess";
+import About from "../About";
 
 const router = createBrowserRouter([
   //  PUBLIC ROUTES 
@@ -58,6 +58,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "sign-up", element: <Signup /> },
       { path: "contact", element: <Contact /> },
+      { path: "about", element: <About /> },
 
       // Tuition Listing & Details
       { path: "tuitions", element: <TuitionsListing /> },
@@ -96,7 +97,7 @@ const router = createBrowserRouter([
       { path: "payments", element: <Payments /> },
       { path: "payment-history", element: <PaymentHistory /> },
       { path: "profile-settings", element: <ProfileSettings /> },
-      { path: "add-request", element: <AddRequest /> },
+     
     ],
   },
 

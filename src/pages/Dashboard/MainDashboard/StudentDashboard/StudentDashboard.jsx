@@ -1,4 +1,4 @@
-// src/pages/dashboard/mainDashboard/StudentDashboard/StudentDashboard.jsx
+
 import { Outlet } from "react-router-dom";
 
 import { useContext, useEffect } from "react";

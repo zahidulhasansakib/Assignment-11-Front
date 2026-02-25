@@ -1,4 +1,4 @@
-// src/pages/PaymentSuccess.jsx
+
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";

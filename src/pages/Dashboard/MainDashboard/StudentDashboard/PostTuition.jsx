@@ -1,4 +1,4 @@
-// src/pages/dashboard/PostTuition.jsx
+
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../../../provider/AuthProvider";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";

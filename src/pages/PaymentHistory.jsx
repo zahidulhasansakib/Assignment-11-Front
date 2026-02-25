@@ -1,4 +1,4 @@
-// src/pages/PaymentHistory.jsx
+
 import React from "react";
 
 const PaymentHistory = () => {

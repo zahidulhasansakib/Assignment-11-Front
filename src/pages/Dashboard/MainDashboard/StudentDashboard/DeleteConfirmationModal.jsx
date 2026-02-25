@@ -1,4 +1,4 @@
-// src/components/DeleteConfirmationModal.jsx
+
 import React from "react";
 import { motion } from "framer-motion";
 import { FaTimes, FaExclamationTriangle } from "react-icons/fa";
