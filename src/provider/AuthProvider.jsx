@@ -23,7 +23,6 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(null);
 
-
   const emailSignup = async (
     name,
     email,
@@ -51,9 +50,9 @@ const AuthProvider = ({ children }) => {
 
       const idToken = await result.user.getIdToken();
 
-      // ✅ সব fields পাঠান
+      
       const response = await axios.post(
-        "http://localhost:5000/register",
+        "https://assignment11-lemon.vercel.app/register",
         {
           name: name || result.user.displayName,
           email: result.user.email,
@@ -108,7 +107,7 @@ const AuthProvider = ({ children }) => {
       const idToken = await result.user.getIdToken();
 
       const response = await axios.post(
-        "http://localhost:5000/login",
+        "https://assignment11-lemon.vercel.app/login",
         {
           email: result.user.email,
           password: password,
@@ -153,7 +152,7 @@ const AuthProvider = ({ children }) => {
 
       const idToken = await result.user.getIdToken();
       const response = await axios.post(
-        "http://localhost:5000/google-login",
+        "https://assignment11-lemon.vercel.app/google-login",
         {
           name: result.user.displayName,
           email: result.user.email,
@@ -210,7 +209,7 @@ const AuthProvider = ({ children }) => {
         try {
           const idToken = await currentUser.getIdToken();
           const res = await axios.get(
-            `http://localhost:5000/users/role/${currentUser.email}`,
+            `https://assignment11-lemon.vercel.app/users/role/${currentUser.email}`,
             { headers: { Authorization: `Bearer ${idToken}` } },
           );
 
@@ -270,7 +269,7 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
-};;
+};
 
 // Default export only
 export default AuthProvider;

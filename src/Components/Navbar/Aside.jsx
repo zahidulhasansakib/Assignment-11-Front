@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import {
   FaChartPie,
@@ -16,11 +15,12 @@ import {
   FaFileAlt,
   FaSignOutAlt,
   FaCog,
+  FaTimes,
 } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 
-const Aside = () => {
+const Aside = ({ onClose }) => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -62,7 +62,16 @@ const Aside = () => {
   const roleInfo = getRoleInfo();
 
   return (
-    <aside className="w-72 min-h-screen bg-gradient-to-b from-base-200 to-base-300 shadow-xl flex flex-col">
+    <aside className="w-72 min-h-screen bg-gradient-to-b from-base-200 to-base-300 shadow-xl flex flex-col overflow-y-auto">
+      {/* Sidebar Header with Close Button for Mobile */}
+      <div className="p-4 flex justify-end md:hidden">
+        <button
+          onClick={onClose}
+          className="p-2 hover:bg-base-300 rounded-lg transition-colors">
+          <FaTimes className="text-xl" />
+        </button>
+      </div>
+
       {/* Profile Section */}
       <div className={`p-6 bg-gradient-to-r ${roleInfo.color} text-white`}>
         <div className="flex items-center gap-4">
@@ -89,26 +98,10 @@ const Aside = () => {
         </div>
       </div>
 
-      {/* Navigation Menu */}
+      {/* Navigation Menu - Student specific */}
       <div className="flex-1 overflow-y-auto">
         <ul className="menu px-4 py-6 gap-2 text-base-content">
-          {/* Dashboard Home */}
-          <li>
-            <Link
-              to={
-                user?.role === "admin"
-                  ? "/admin"
-                  : user?.role === "tutor"
-                    ? "/tutor"
-                    : "/dashboard"
-              }
-              className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white transition-all">
-              <FaChartPie className="text-lg" />
-              Dashboard
-            </Link>
-          </li>
-
-          {/* Student Links */}
+          {/* Student Menu */}
           {user?.role === "student" && (
             <>
               <li className="menu-title text-xs opacity-60 mt-4 mb-2">
@@ -116,7 +109,17 @@ const Aside = () => {
               </li>
               <li>
                 <Link
+                  to="/dashboard"
+                  onClick={onClose}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white transition-all">
+                  <FaChartPie className="text-lg" />
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/dashboard/my-tuitions"
+                  onClick={onClose}
                   className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
                   <FaBoxOpen className="text-lg" /> My Tuitions
                 </Link>
@@ -124,6 +127,7 @@ const Aside = () => {
               <li>
                 <Link
                   to="/dashboard/post-tuition"
+                  onClick={onClose}
                   className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
                   <FaPlusCircle className="text-lg" /> Post Tuition
                 </Link>
@@ -131,6 +135,7 @@ const Aside = () => {
               <li>
                 <Link
                   to="/dashboard/applied-tutors"
+                  onClick={onClose}
                   className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
                   <FaUsers className="text-lg" /> Applied Tutors
                 </Link>
@@ -138,6 +143,7 @@ const Aside = () => {
               <li>
                 <Link
                   to="/dashboard/payments"
+                  onClick={onClose}
                   className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
                   <FaShoppingCart className="text-lg" /> Payments
                 </Link>
@@ -145,80 +151,7 @@ const Aside = () => {
               <li>
                 <Link
                   to="/dashboard/profile-settings"
-                  className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
-                  <FaCog className="text-lg" /> Profile Settings
-                </Link>
-              </li>
-            </>
-          )}
-
-          {/* Tutor Links */}
-          {user?.role === "tutor" && (
-            <>
-              <li className="menu-title text-xs opacity-60 mt-4 mb-2">
-                TUTOR MENU
-              </li>
-              <li>
-                <Link
-                  to="/tutor/my-applications"
-                  className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
-                  <FaFileAlt className="text-lg" /> My Applications
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/tutor/ongoing-tuitions"
-                  className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
-                  <FaClock className="text-lg" /> Ongoing Tuitions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/tutor/revenue"
-                  className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
-                  <FaMoneyBillWave className="text-lg" /> Revenue History
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/tutor/profile-settings"
-                  className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
-                  <FaCog className="text-lg" /> Profile Settings
-                </Link>
-              </li>
-            </>
-          )}
-
-          {/* Admin Links */}
-          {user?.role === "admin" && (
-            <>
-              <li className="menu-title text-xs opacity-60 mt-4 mb-2">
-                ADMIN MENU
-              </li>
-              <li>
-                <Link
-                  to="/admin/users"
-                  className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
-                  <FaUsers className="text-lg" /> User Management
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/admin/tuitions"
-                  className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
-                  <FaBook className="text-lg" /> Tuition Management
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/admin/reports"
-                  className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
-                  <FaChartPie className="text-lg" /> Reports & Analytics
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/admin/profile-settings"
+                  onClick={onClose}
                   className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-primary hover:text-white">
                   <FaCog className="text-lg" /> Profile Settings
                 </Link>
@@ -232,6 +165,7 @@ const Aside = () => {
           <li>
             <Link
               to="/"
+              onClick={onClose}
               className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-secondary hover:text-white">
               <FaHome className="text-lg" /> Back to Home
             </Link>

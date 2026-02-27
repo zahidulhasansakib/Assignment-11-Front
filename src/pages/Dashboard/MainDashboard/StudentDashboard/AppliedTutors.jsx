@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../../../provider/AuthProvider";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
@@ -67,8 +66,6 @@ const AppliedTutors = () => {
       window.history.replaceState({}, "", url);
     }
   }, []);
-
-  // AppliedTutors.jsx - এই function টি যোগ করুন (state variables এর পরে)
 
   // Handle Payment and Approve
   const handlePaymentAndApprove = async () => {
@@ -263,93 +260,93 @@ const AppliedTutors = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50 p-4 md:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50 p-3 sm:p-4 md:p-6 lg:p-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+        className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6">
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 flex items-center gap-3">
-              <FaUserGraduate className="text-purple-600" />
-              Tutor Applications
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 flex items-center gap-2 sm:gap-3">
+              <FaUserGraduate className="text-purple-600 text-xl sm:text-2xl md:text-3xl" />
+              <span className="break-words">Tutor Applications</span>
             </h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2">
               Review and manage tutor applications for your tuitions
             </p>
           </div>
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
+        {/* Stats Cards - Responsive Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-6 border-l-4 border-blue-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm">Total Applications</p>
-                <h3 className="text-3xl font-bold text-gray-800">
+                <p className="text-xs sm:text-sm text-gray-500">Total</p>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
                   {stats.total}
                 </h3>
               </div>
-              <div className="p-3 bg-blue-100 rounded-full">
-                <FaUserGraduate className="text-blue-600 text-xl" />
+              <div className="p-2 sm:p-3 bg-blue-100 rounded-full">
+                <FaUserGraduate className="text-blue-600 text-base sm:text-xl" />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
+          <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-6 border-l-4 border-yellow-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm">Pending</p>
-                <h3 className="text-3xl font-bold text-gray-800">
+                <p className="text-xs sm:text-sm text-gray-500">Pending</p>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
                   {stats.pending}
                 </h3>
               </div>
-              <div className="p-3 bg-yellow-100 rounded-full">
-                <FaHourglassHalf className="text-yellow-600 text-xl" />
+              <div className="p-2 sm:p-3 bg-yellow-100 rounded-full">
+                <FaHourglassHalf className="text-yellow-600 text-base sm:text-xl" />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+          <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-6 border-l-4 border-green-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm">Approved</p>
-                <h3 className="text-3xl font-bold text-gray-800">
+                <p className="text-xs sm:text-sm text-gray-500">Approved</p>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
                   {stats.approved}
                 </h3>
               </div>
-              <div className="p-3 bg-green-100 rounded-full">
-                <FaCheckCircle className="text-green-600 text-xl" />
+              <div className="p-2 sm:p-3 bg-green-100 rounded-full">
+                <FaCheckCircle className="text-green-600 text-base sm:text-xl" />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+          <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-6 border-l-4 border-red-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm">Rejected</p>
-                <h3 className="text-3xl font-bold text-gray-800">
+                <p className="text-xs sm:text-sm text-gray-500">Rejected</p>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
                   {stats.rejected}
                 </h3>
               </div>
-              <div className="p-3 bg-red-100 rounded-full">
-                <FaTimesCircle className="text-red-600 text-xl" />
+              <div className="p-2 sm:p-3 bg-red-100 rounded-full">
+                <FaTimesCircle className="text-red-600 text-base sm:text-xl" />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Filters */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <div className="flex flex-col md:flex-row gap-4">
+        {/* Filters - Responsive Stack */}
+        <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <div className="flex-1">
               <div className="relative">
-                <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <FaSearch className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm sm:text-base" />
                 <input
                   type="text"
                   placeholder="Search by tutor name or subject..."
-                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+                  className="w-full pl-9 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -357,7 +354,7 @@ const AppliedTutors = () => {
             </div>
 
             <select
-              className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+              className="w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}>
               <option value="all">All Status</option>
@@ -367,7 +364,7 @@ const AppliedTutors = () => {
             </select>
 
             <select
-              className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+              className="w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
               value={tuitionFilter}
               onChange={(e) => setTuitionFilter(e.target.value)}>
               <option value="all">All Tuitions</option>
@@ -387,54 +384,54 @@ const AppliedTutors = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}>
         {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-600"></div>
+          <div className="flex justify-center items-center h-48 sm:h-64">
+            <div className="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-t-4 border-b-4 border-purple-600"></div>
           </div>
         ) : filteredApplications.length === 0 ? (
-          <div className="text-center py-16 bg-white rounded-xl shadow-lg">
-            <FaUserGraduate className="text-gray-400 text-6xl mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold text-gray-700 mb-2">
+          <div className="text-center py-12 sm:py-16 bg-white rounded-lg sm:rounded-xl shadow-lg">
+            <FaUserGraduate className="text-gray-400 text-4xl sm:text-6xl mx-auto mb-3 sm:mb-4" />
+            <h3 className="text-lg sm:text-2xl font-semibold text-gray-700 mb-1 sm:mb-2">
               No Applications Found
             </h3>
-            <p className="text-gray-500">
+            <p className="text-sm sm:text-base text-gray-500 px-4">
               {searchTerm || statusFilter !== "all" || tuitionFilter !== "all"
                 ? "No applications match your filters"
                 : "No tutors have applied to your tuitions yet"}
             </p>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {filteredApplications.map((app) => (
               <motion.div
                 key={app._id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-                <div className="p-6">
-                  {/* Application Header */}
-                  <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6">
-                    <div className="flex items-start gap-4">
+                className="bg-white rounded-lg sm:rounded-xl shadow-lg overflow-hidden border border-gray-200">
+                <div className="p-4 sm:p-6">
+                  {/* Application Header - Responsive */}
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6">
+                    <div className="flex items-start gap-3 sm:gap-4 w-full sm:w-auto">
                       {/* Tutor Image */}
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-2xl font-bold">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-lg sm:text-2xl font-bold flex-shrink-0">
                         {app.tutor?.name?.charAt(0) ||
                           app.tutorEmail?.charAt(0) ||
                           "T"}
                       </div>
 
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-800">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 truncate">
                           {app.tutor?.name || app.tutorEmail?.split("@")[0]}
                         </h3>
-                        <div className="flex items-center gap-2 mt-1">
-                          <FaEnvelope className="text-gray-400" size={14} />
-                          <span className="text-gray-600">
+                        <div className="flex items-center gap-1 sm:gap-2 mt-0.5 sm:mt-1">
+                          <FaEnvelope className="text-gray-400 text-xs sm:text-sm flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-gray-600 truncate">
                             {app.tutorEmail}
                           </span>
                         </div>
                         {app.tutor?.phone && (
-                          <div className="flex items-center gap-2 mt-1">
-                            <FaPhone className="text-gray-400" size={14} />
-                            <span className="text-gray-600">
+                          <div className="flex items-center gap-1 sm:gap-2 mt-0.5 sm:mt-1">
+                            <FaPhone className="text-gray-400 text-xs sm:text-sm flex-shrink-0" />
+                            <span className="text-xs sm:text-sm text-gray-600">
                               {app.tutor.phone}
                             </span>
                           </div>
@@ -442,15 +439,16 @@ const AppliedTutors = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 mt-4 lg:mt-0">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-3 sm:mt-0 w-full sm:w-auto">
                       <span
-                        className={`px-4 py-2 rounded-full text-sm font-medium border flex items-center gap-2 ${getStatusBadge(app.status)}`}>
+                        className={`px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium border flex items-center gap-1 sm:gap-2 ${getStatusBadge(app.status)}`}>
                         {getStatusIcon(app.status)}
-                        {app.status?.charAt(0).toUpperCase() +
-                          app.status?.slice(1)}
+                        <span className="hidden xs:inline">
+                          {app.status?.charAt(0).toUpperCase() +
+                            app.status?.slice(1)}
+                        </span>
                       </span>
-                      <span className="text-sm text-gray-500">
-                        Applied:{" "}
+                      <span className="text-xs sm:text-sm text-gray-500">
                         {new Date(
                           app.appliedAt || app.createdAt,
                         ).toLocaleDateString()}
@@ -458,58 +456,62 @@ const AppliedTutors = () => {
                     </div>
                   </div>
 
-                  {/* Tutor Details Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <div className="bg-gray-50 rounded-lg p-3">
+                  {/* Tutor Details Grid - Responsive */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6">
+                    <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
                       <p className="text-xs text-gray-500">Experience</p>
-                      <p className="font-semibold">
+                      <p className="text-sm sm:text-base font-semibold truncate">
                         {app.tutor?.experience || "N/A"}
                       </p>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-3">
+                    <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
                       <p className="text-xs text-gray-500">Qualification</p>
-                      <p className="font-semibold">
+                      <p className="text-sm sm:text-base font-semibold truncate">
                         {app.tutor?.qualification || "N/A"}
                       </p>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-3">
+                    <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
                       <p className="text-xs text-gray-500">Expected Salary</p>
-                      <p className="font-semibold text-green-600">
+                      <p className="text-sm sm:text-base font-semibold text-green-600">
                         ৳{app.proposedFee || app.tuition?.budget}
                       </p>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-3">
+                    <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
                       <p className="text-xs text-gray-500">Location</p>
-                      <p className="font-semibold">
+                      <p className="text-sm sm:text-base font-semibold truncate">
                         {app.tuition?.location || "N/A"}
                       </p>
                     </div>
                   </div>
 
-                  {/* Tuition Details */}
-                  <div className="bg-blue-50 rounded-lg p-4 mb-6">
-                    <h4 className="font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                      <FaBook className="text-blue-600" />
+                  {/* Tuition Details - Responsive */}
+                  <div className="bg-blue-50 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
+                    <h4 className="text-sm sm:text-base font-semibold text-gray-700 mb-2 sm:mb-3 flex items-center gap-2">
+                      <FaBook className="text-blue-600 text-xs sm:text-sm" />
                       Applied for Tuition:
                     </h4>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       <div>
                         <p className="text-xs text-gray-500">Subject</p>
-                        <p className="font-medium">{app.tuition?.subject}</p>
+                        <p className="text-sm sm:text-base font-medium truncate">
+                          {app.tuition?.subject}
+                        </p>
                       </div>
                       <div>
                         <p className="text-xs text-gray-500">Class</p>
-                        <p className="font-medium">{app.tuition?.class}</p>
+                        <p className="text-sm sm:text-base font-medium truncate">
+                          {app.tuition?.class}
+                        </p>
                       </div>
                       <div>
                         <p className="text-xs text-gray-500">Budget</p>
-                        <p className="font-medium text-green-600">
+                        <p className="text-sm sm:text-base font-medium text-green-600">
                           ৳{app.tuition?.budget}
                         </p>
                       </div>
                       <div>
                         <p className="text-xs text-gray-500">Days/Week</p>
-                        <p className="font-medium">
+                        <p className="text-sm sm:text-base font-medium">
                           {app.tuition?.daysPerWeek || "N/A"}
                         </p>
                       </div>
@@ -518,14 +520,14 @@ const AppliedTutors = () => {
 
                   {/* Message from Tutor */}
                   {app.message && (
-                    <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                      <div className="flex items-start gap-3">
-                        <FaComment className="text-gray-500 mt-1" />
-                        <div>
-                          <p className="text-sm font-medium text-gray-700">
+                    <div className="bg-gray-50 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <FaComment className="text-gray-500 mt-1 text-xs sm:text-sm flex-shrink-0" />
+                        <div className="min-w-0">
+                          <p className="text-xs sm:text-sm font-medium text-gray-700">
                             Message from Tutor:
                           </p>
-                          <p className="text-gray-600 italic">
+                          <p className="text-xs sm:text-sm text-gray-600 italic break-words">
                             "{app.message}"
                           </p>
                         </div>
@@ -533,20 +535,20 @@ const AppliedTutors = () => {
                     </div>
                   )}
 
-                  {/* Action Buttons - APPROVE/REJECT HERE */}
+                  {/* Action Buttons - Responsive */}
                   {app.status === "pending" && (
-                    <div className="flex gap-3">
+                    <div className="flex flex-col xs:flex-row gap-2 sm:gap-3">
                       {/* Reject Button */}
                       <button
                         onClick={() => handleReject(app._id)}
                         disabled={processingId === app._id}
-                        className="flex-1 px-6 py-3 bg-red-100 text-red-700 font-semibold rounded-lg hover:bg-red-200 transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
+                        className="flex-1 px-3 sm:px-6 py-2 sm:py-3 bg-red-100 text-red-700 font-semibold rounded-lg hover:bg-red-200 transition-colors disabled:opacity-50 flex items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base">
                         {processingId === app._id ? (
-                          <div className="w-5 h-5 border-2 border-red-700 border-t-transparent rounded-full animate-spin"></div>
+                          <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-red-700 border-t-transparent rounded-full animate-spin"></div>
                         ) : (
                           <>
-                            <FaTimes />
-                            Reject Application
+                            <FaTimes className="text-xs sm:text-sm" />
+                            <span className="hidden xs:inline">Reject</span>
                           </>
                         )}
                       </button>
@@ -555,39 +557,41 @@ const AppliedTutors = () => {
                       <button
                         onClick={() => handleApproveClick(app)}
                         disabled={processingId === app._id}
-                        className="flex-1 px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
-                        <FaCheck />
-                        Approve & Pay
+                        className="flex-1 px-3 sm:px-6 py-2 sm:py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base">
+                        <FaCheck className="text-xs sm:text-sm" />
+                        <span className="hidden xs:inline">Approve</span>
+                        <span className="xs:hidden">Pay</span>
                       </button>
 
-                      {/* Optional: Quick Approve without Payment (for testing) */}
+                      {/* Quick Approve for testing */}
                       <button
                         onClick={() => handleApproveWithoutPayment(app._id)}
                         disabled={processingId === app._id}
-                        className="px-4 py-3 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors text-sm"
+                        className="px-2 sm:px-4 py-2 sm:py-3 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors text-xs sm:text-sm"
                         title="Testing only">
-                        Quick Approve
+                        <span className="hidden sm:inline">Quick</span>
+                        <span className="sm:hidden">⚡</span>
                       </button>
                     </div>
                   )}
 
                   {/* Status Display for non-pending applications */}
                   {app.status === "approved" && (
-                    <div className="bg-green-50 rounded-lg p-4 text-center">
-                      <FaCheckCircle className="text-green-600 text-2xl mx-auto mb-2" />
-                      <p className="text-green-700 font-semibold">
+                    <div className="bg-green-50 rounded-lg p-3 sm:p-4 text-center">
+                      <FaCheckCircle className="text-green-600 text-xl sm:text-2xl mx-auto mb-1 sm:mb-2" />
+                      <p className="text-sm sm:text-base text-green-700 font-semibold">
                         ✓ Application Approved
                       </p>
-                      <p className="text-sm text-green-600">
+                      <p className="text-xs sm:text-sm text-green-600">
                         Tutor has been notified
                       </p>
                     </div>
                   )}
 
                   {app.status === "rejected" && (
-                    <div className="bg-red-50 rounded-lg p-4 text-center">
-                      <FaTimesCircle className="text-red-600 text-2xl mx-auto mb-2" />
-                      <p className="text-red-700 font-semibold">
+                    <div className="bg-red-50 rounded-lg p-3 sm:p-4 text-center">
+                      <FaTimesCircle className="text-red-600 text-xl sm:text-2xl mx-auto mb-1 sm:mb-2" />
+                      <p className="text-sm sm:text-base text-red-700 font-semibold">
                         ✗ Application Rejected
                       </p>
                     </div>
@@ -599,35 +603,39 @@ const AppliedTutors = () => {
         )}
       </motion.div>
 
-      {/* Payment Modal - */}
+      {/* Payment Modal - Responsive */}
       {showPaymentModal && selectedApplication && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 sm:p-4 z-50">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="bg-white rounded-2xl max-w-md w-full">
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4">Confirm Payment</h2>
+            className="bg-white rounded-xl sm:rounded-2xl max-w-md w-full mx-3 sm:mx-0">
+            <div className="p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4">
+                Confirm Payment
+              </h2>
 
-              <div className="bg-blue-50 rounded-lg p-4 mb-6">
-                <p className="text-sm text-gray-600 mb-3">Payment Details:</p>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
+              <div className="bg-blue-50 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
+                <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">
+                  Payment Details:
+                </p>
+                <div className="space-y-1 sm:space-y-2">
+                  <div className="flex justify-between text-sm sm:text-base">
                     <span className="text-gray-600">Tutor:</span>
-                    <span className="font-semibold">
+                    <span className="font-semibold truncate ml-2">
                       {selectedApplication.tutor?.name ||
                         selectedApplication.tutorEmail}
                     </span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between text-sm sm:text-base">
                     <span className="text-gray-600">Subject:</span>
-                    <span className="font-medium">
+                    <span className="font-medium truncate ml-2">
                       {selectedApplication.tuition?.subject}
                     </span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between text-sm sm:text-base">
                     <span className="text-gray-600">Amount:</span>
-                    <span className="text-2xl font-bold text-green-600">
+                    <span className="text-lg sm:text-xl md:text-2xl font-bold text-green-600">
                       ৳
                       {selectedApplication.proposedFee ||
                         selectedApplication.tuition?.budget}
@@ -636,33 +644,33 @@ const AppliedTutors = () => {
                 </div>
               </div>
 
-              <div className="bg-yellow-50 rounded-lg p-4 mb-6">
-                <p className="text-sm text-yellow-800">
+              <div className="bg-yellow-50 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
+                <p className="text-xs sm:text-sm text-yellow-800">
                   <strong>Note:</strong> After successful payment, this tutor
                   will be approved and other pending applications will be
                   automatically rejected.
                 </p>
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col xs:flex-row gap-2 sm:gap-3">
                 <button
                   onClick={() => {
                     setShowPaymentModal(false);
                     setSelectedApplication(null);
                   }}
                   disabled={paymentLoading}
-                  className="flex-1 px-4 py-3 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors disabled:opacity-50">
+                  className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors disabled:opacity-50 text-sm sm:text-base">
                   Cancel
                 </button>
 
                 <button
                   onClick={handlePaymentAndApprove}
                   disabled={paymentLoading}
-                  className="flex-1 px-4 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-2">
+                  className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base">
                   {paymentLoading ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      Processing...
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span className="text-xs sm:text-sm">Processing...</span>
                     </>
                   ) : (
                     "Pay Now"
@@ -673,8 +681,31 @@ const AppliedTutors = () => {
           </motion.div>
         </div>
       )}
+
+      {/* Responsive Style Adjustments */}
+      <style jsx>{`
+        @media (max-width: 480px) {
+          .xs\\:inline {
+            display: inline;
+          }
+          .xs\\:hidden {
+            display: none;
+          }
+          .xs\\:flex-row {
+            flex-direction: row;
+          }
+        }
+        @media (max-width: 640px) {
+          input,
+          select,
+          textarea,
+          button {
+            font-size: 16px !important; /* Prevents zoom on mobile */
+          }
+        }
+      `}</style>
     </div>
   );
-};;
+};
 
 export default AppliedTutors;

@@ -49,7 +49,7 @@ const Navbar = () => {
         <Link
           to="/"
           className="text-2xl font-bold text-orange-400 hover:text-orange-300 transition-colors">
-          <span className="mr-2">📚</span>TuitionPlatform
+          <span className="mr-2">📚</span>eTuitionBd
         </Link>
       </div>
 
